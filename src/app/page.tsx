@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
               </Button>
             </SignInButton>
       </SignedOut>
+      <ModeToggle/>
       <SignedIn>
               <UserButton />
       </SignedIn>
