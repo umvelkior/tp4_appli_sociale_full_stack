@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 Connection : clerk -> énorme bug arriver tout seul
 
 Navbar et dark mode : shadcn
+
+upload image : uploadthing

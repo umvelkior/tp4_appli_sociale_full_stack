@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
+import YouTube from 'react-youtube';
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
@@ -71,6 +72,14 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
     }
   };
 
+  const getYouTubeVideoId = (url : string) => {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  const videoId = post.content ? getYouTubeVideoId(post.content) : null;
+
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-4 sm:p-6">
@@ -111,6 +120,13 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
           {post.image && (
             <div className="rounded-lg overflow-hidden">
               <img src={post.image} alt="Post content" className="w-full h-auto object-cover" />
+            </div>
+          )}
+
+          {/* YOUTUBE VIDEO */}
+          {videoId && (
+            <div className="rounded-lg overflow-hidden Video_youtube">
+              <YouTube videoId={videoId} />
             </div>
           )}
 
